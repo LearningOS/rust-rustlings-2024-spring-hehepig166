@@ -34,6 +34,8 @@ unsafe fn modify_by_address(address: usize) {
     unsafe {
         // todo!("Your code goes here")
         // let value = address as *mut u32;
+        // SAFETY: The address is guaranteed to be valid and contains
+        // a unique reference to a `u32` local variable
         *(address as *mut u32) = 0xAABBCCDD;
     }
 }

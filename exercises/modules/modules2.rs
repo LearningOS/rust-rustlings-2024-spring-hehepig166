@@ -31,4 +31,7 @@ fn main() {
         delicious_snacks::fruit,
         delicious_snacks::veggie
     );
+
+    // let a = delicious_snacks::fruits::PEAR;
+    let b = delicious_snacks::fruit;
 }
