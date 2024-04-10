@@ -2,7 +2,7 @@
 	double linked list reverse
 	This problem requires you to reverse a doubly linked list
 */
-// I AM NOT DONE
+
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
@@ -74,6 +74,29 @@ impl<T> LinkedList<T> {
     }
 	pub fn reverse(&mut self){
 		// TODO
+        let mut current = self.start;               // current => Option<NonNull<Node<T>>>
+        while let Some(mut node_ptr) = current {    // node_ptr => NonNull<Node<T>>
+            unsafe{
+
+                //std::mem::swap(&mut (*node_ptr.as_ptr()).next, &mut (*node_ptr.as_ptr()).prev);
+
+                println!(".....................................");
+                println!("(*node_ptr.as_ptr()).next  {:?}", (*node_ptr.as_ptr()).next);
+                println!("(*node_ptr.as_ptr()).prev  {:?}", (*node_ptr.as_ptr()).prev);
+                let next = (*node_ptr.as_ptr()).next;   // next => NonNull<Node<T>>
+                let prev = (*node_ptr.as_ptr()).prev;   // prev => NonNull<Node<T>>
+                println!("====next=== {:?}", next);
+                println!("====prev=== {:?}", prev);
+                (*node_ptr.as_ptr()).next = prev;
+                (*node_ptr.as_ptr()).prev = next;
+                println!("(*node_ptr.as_ptr()).next  {:?}", (*node_ptr.as_ptr()).next);
+                println!("(*node_ptr.as_ptr()).prev  {:?}", (*node_ptr.as_ptr()).prev);
+                println!(".....................................");
+                current = next;
+            }
+        }
+
+        std::mem::swap(&mut self.start, &mut self.end);
 	}
 }
 
